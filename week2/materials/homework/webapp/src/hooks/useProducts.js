@@ -44,10 +44,19 @@ function useProducts() {
   };
 
   const removeProduct = (product) => {
-    setCart(cart.filter((item) => item.id != product.id));
+    setCart(cart.filter((item) => item.id !== product.id));
   };
 
-  return { products, cart, addProduct, removeProduct };
+  const calculateSum = () => {
+    let totalPrice = 0;
+    cart.forEach((item, i) => {
+      totalPrice += parseInt(item.price)
+    });
+
+    return totalPrice;
+  };
+
+  return { products, cart, addProduct, removeProduct, total: calculateSum() };
 }
 
 export default useProducts;

@@ -1,20 +1,28 @@
+import { useEffect } from "react";
+import useNotifications from "../hooks/useNotification";
 import useProducts from "../hooks/useProducts";
 
 function Products() {
-  const { products, cart, addProduct, removeProduct } = useProducts();
+  const { products, cart, addProduct, removeProduct, total } = useProducts();
+  const { notification, createNotification } = useNotifications();
 
   const isInCart = (product) => {
     return !cart.find((item) => item.id === product.id);
   };
 
+  useEffect(() => {
+    createNotification(`you have ${cart.length} items in cart`);
+  }, [cart, createNotification])
+
   return (
     <div>
+      <div class="p-3 mb-2 bg-success text-white">{notification}</div>
       <div className="row">
         {products.map((product) => {
           return (
             <div className="card col-md-4" key={product.id}>
               <div className="text-center">
-                <img style={{ width: "400px" }} src={product.imageURL} />
+                <img style={{ width: "400px" }} src={product.imageURL} alt={product.name} />
               </div>
               <div className="card-body">
                 <h2>{product.name}</h2>
@@ -48,8 +56,7 @@ function Products() {
       </div>
       <form>
         <div className="form-group mt-4 col-md-4">
-          <p className="mt-4">You will be charged: ?</p>
-
+          <p className="mt-4">You will be charged: {total}</p>
           <label htmlFor="exampleInputEmail1">Email address</label>
           <input
             type="email"

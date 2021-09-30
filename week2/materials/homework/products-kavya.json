@@ -26,6 +26,14 @@
       "description": "Great box for your juicer",
       "price": "50",
       "currency": "DKK"
+    },
+    {
+      "id": 4,
+      "name": "greens",
+      "imageURL": "https://www.kirbysproduce.com/wp-content/uploads/2020/04/produce-box.jpg",
+      "description": "for green lovers",
+      "price": "60",
+      "currency": "DKK"
     }
   ]
 }

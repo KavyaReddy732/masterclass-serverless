@@ -1,13 +1,16 @@
 import { useState } from "react";
+//import useProducts from "./useProducts";
 
 function useNotifications() {
-  const [notifications, setNotifications] = useState([]);
+  const [notification, setNotification] = useState();
 
   const createNotification = (text) => {
-    // hint: use setTimeout
-  };
+    setNotification(text);
+  }
 
-  return { notifications, createNotification };
+  return {
+    notification, createNotification
+  };
 }
 
 export default useNotifications;
